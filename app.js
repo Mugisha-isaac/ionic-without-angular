@@ -3,6 +3,14 @@ const amountInput = document.querySelector('#input-amount');
 const cancelBtn = document.querySelector('#btn-cancel');
 const addBtn = document.querySelector('#btn-add');
 const expensesList = document.querySelector('#expenses');
+const totalExpenses = document.querySelector('#total_expenses');
+
+let totalEx = 0;
+
+const clear=()=>{
+    reasonInput.value='';
+    amountInput.value=''
+}
 
 addBtn.addEventListener('click',()=>{
     const enterdReason = reasonInput.value;
@@ -14,4 +22,9 @@ addBtn.addEventListener('click',()=>{
     const newItem = document.createElement('ion-item');
     newItem.textContent = enterdReason + ':$' + enterdAmount;
     expensesList.appendChild(newItem);
+    totalEx+= +enterdAmount;
+    totalExpenses.textContent = totalEx;
+    clear();
 })
+
+cancelBtn.addEventListener('click',clear)
